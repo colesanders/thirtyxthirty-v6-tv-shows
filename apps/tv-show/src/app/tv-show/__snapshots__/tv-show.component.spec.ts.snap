@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TvShowComponent should select a tvShow 1`] = `
+Object {
+  "description": "Mock descr",
+  "id": 1,
+  "name": "Mock TvShow",
+  "price": 0,
+  "stars": 1,
+  "type": "sit-com",
+}
+`;

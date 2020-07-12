@@ -1,0 +1,11 @@
+<div class="tvshow-containers">
+
+    <div class="tvshow-list">
+        <thirty-tv-show-list [tvshows]="tvshow$ | async" (selected)="selectTvShow($event)" (deleted)="deleteTvShow($event)">
+        </thirty-tv-show-list>
+    </div>
+    <div class="tvshow-info">
+        <thirty-tv-show-info [tvshowForm]="tvshowForm" (saved)="saveTvShow()" (cancelled)="resetForm()"> 
+        </thirty-tv-show-info>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<mat-card class="mat-card-dark"> 
+    <mat-card-header style="display: flex; justify-content: space-between;">
+      <mat-card-title class="accent">
+        <span *ngIf="tvshowForm.value.id !== null; else elseBlock">
+          Editing TvShow
+        </span>
+        <ng-template #elseBlock>
+          Create TvShow
+        </ng-template>
+      </mat-card-title>
+
+      <span>
+        <span *ngFor="let star of starDisplay | slice:0:tvshowForm.value.stars">
+          <mat-icon svgIcon="thirty-star" class="star-color"></mat-icon>
+        </span>
+      </span>
+      
+    </mat-card-header>
+  <form [formGroup]="tvshowForm" (ngSubmit)="saved.emit()">
+    <mat-card-content >
+
+      <mat-form-field class="full-width" style="width: 50%" >
+        <mat-label *ngIf="tvshowForm.invalid && tvshowForm.touched">
+          Name must contain at least 2 characters.
+        </mat-label>
+        <input  matInput required placeholder="Name" type="string"
+        formControlName="name">
+      </mat-form-field>
+      <br>
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Select Type</mat-label>
+        <mat-select matInput id="type" formControlName="type">
+          <mat-option value="sit-com">Sit-Com</mat-option>
+          <mat-option value="rom-com">Rom-Com</mat-option>
+          <mat-option value="kids">Kids</mat-option>
+          <mat-option value="teen">Teen</mat-option>
+          <mat-option value="action-drama">Action-Drama</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+        
+
+      <mat-form-field class="full-width">
+        <mat-label *ngIf="tvshowForm.invalid && tvshowForm.touched">
+          Description must contain 10 characters.
+        </mat-label>
+
+        <textarea  matInput required placeholder="Description" type="text"
+        formControlName="description">
+        </textarea>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="full-width">
+        <mat-label>
+          {{tvshowForm.value.price | currency}}
+        </mat-label>
+          <input  matInput required placeholder="Price" type="number"
+          formControlName="price">
+      </mat-form-field> 
+      <br>
+      
+      <mat-radio-group matInput required class="content-spread" formControlName="stars">
+        <mat-radio-button [value]="1">1 Star</mat-radio-button>
+        <mat-radio-button [value]="2">2 Stars</mat-radio-button>
+        <mat-radio-button [value]="3">3 Stars</mat-radio-button>
+        <mat-radio-button [value]="4">4 Stars</mat-radio-button>
+        <mat-radio-button [value]="5">5 Stars</mat-radio-button>
+      </mat-radio-group>
+
+    </mat-card-content>
+    <mat-card-actions style="display: flex; justify-content: space-between;">
+      <button [disabled]="tvshowForm.invalid" type="submit" mat-button color="primary">Save</button>
+      <button type="button" mat-button (click)="cancelled.emit();tvshowForm.reset();">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

@@ -1,0 +1,21 @@
+<mat-card class="mat-card-dark">
+    <mat-card-header>
+      <mat-card-title class="accent">
+        TvShows List
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let tvshow of tvshows" (click)="selected.emit(tvshow)" style="cursor: pointer">
+          <h3 matLine> {{ tvshow.name | titlecase }} </h3>
+          <p matLine>
+            {{ tvshow.description }}
+          </p>
+          <button mat-icon-button color="warn" (click)="deleted.emit(tvshow); $event.stopImmediatePropagation()" >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-list>
+      
+    </mat-card-content>
+</mat-card>
